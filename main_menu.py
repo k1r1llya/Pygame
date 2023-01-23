@@ -7,9 +7,10 @@ FPS = 100
 size = WIDTH, HEIGHT = 600, 800
 screen = pygame.display.set_mode(size)
 coords = {'start_game': (), 'settings': (), 'skins': (), 'rules': (), 'quit': (), 'difficulty': ()}
-difffficult_to_c = {'Easy':(),'Medium':(),"Hardcore":()}
+difffficult_to_c = {'Easy': (), 'Medium': (), "Hardcore": ()}
 clock = pygame.time.Clock()
 diff = 'hardcore'
+
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
@@ -64,7 +65,7 @@ def start_screen():
         clock.tick(FPS)
 
 
-def difficulty(mouse_pos):
+def difficulty():
     intro_text = ["Легко  :)",
                   "Средне :/",
                   "ТЯЯЖКО >;(",
@@ -93,14 +94,16 @@ def difficulty(mouse_pos):
         pygame.display.flip()
         clock.tick(FPS)
 
+
 def choice_of_difficulty(mouse_pos):
     global diff
-    if difffficult_to_c['Easy'].collidepoint(mouse_pos[0],mouse_pos[1]):
+    if difffficult_to_c['Easy'].collidepoint(mouse_pos[0], mouse_pos[1]):
         diff = 'Easy'
-    if difffficult_to_c['Medium'].collidepoint(mouse_pos[0],mouse_pos[1]):
+    if difffficult_to_c['Medium'].collidepoint(mouse_pos[0], mouse_pos[1]):
         diff = 'Medium'
-    if difffficult_to_c['Hardcore'].collidepoint(mouse_pos[0],mouse_pos[1]):
+    if difffficult_to_c['Hardcore'].collidepoint(mouse_pos[0], mouse_pos[1]):
         diff = 'Hardcore'
+
 
 def choice(mouse_pos):
     if coords['start_game'].collidepoint(mouse_pos[0], mouse_pos[1]):
@@ -115,7 +118,7 @@ def choice(mouse_pos):
         terminate()
 
 
-def rules(mouse_pos):
+def rules():
     rules = ("W, A, S, D - движение первого игрока",
              "Стрелки на клавиатуре - движение второго игрока",
              "Забейте шайбу в ворота противника, чтобы заработать очко",
