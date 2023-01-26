@@ -9,7 +9,7 @@ screen = pygame.display.set_mode(size)
 coords = {'start_game': (), 'settings': (), 'skins': (), 'rules': (), 'quit': (), 'difficulty': ()}
 difffficult_to_c = {'Easy': (), 'Medium': (), "Hardcore": ()}
 clock = pygame.time.Clock()
-diff = 'hardcore'
+diff = ''
 
 
 def load_image(name, colorkey=None):
@@ -84,6 +84,7 @@ def difficulty():
         text_coord += text_rect.height
         screen.blit(string_rendered, text_rect)
         difffficult_to_c[difficultyy] = text_rect
+        print(difffficult_to_c)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -103,17 +104,18 @@ def choice_of_difficulty(mouse_pos):
         diff = 'Medium'
     if difffficult_to_c['Hardcore'].collidepoint(mouse_pos[0], mouse_pos[1]):
         diff = 'Hardcore'
+    print(diff)
 
 
 def choice(mouse_pos):
     if coords['start_game'].collidepoint(mouse_pos[0], mouse_pos[1]):
         gameplay.game()
     elif coords['settings'].collidepoint(mouse_pos[0], mouse_pos[1]):
-        difficulty(mouse_pos)
+        difficulty()
     elif coords['skins'].collidepoint(mouse_pos[0], mouse_pos[1]):
         pass
     elif coords['rules'].collidepoint(mouse_pos[0], mouse_pos[1]):
-        rules(mouse_pos)
+        rules()
     elif coords['quit'].collidepoint(mouse_pos[0], mouse_pos[1]):
         terminate()
 
@@ -139,7 +141,7 @@ def rules():
 
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
                 start_screen()
         pygame.display.flip()
         clock.tick(FPS)
@@ -148,6 +150,7 @@ def rules():
 if __name__ == '__main__':
     pygame.init()
     running = True
+    pygame.display.set_caption('Аэрохоккей. Главное меню')
     start_screen()
     while running:
         for event in pygame.event.get():
